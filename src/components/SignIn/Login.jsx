@@ -1,24 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { refreshTokenSetup } from '../../services/refreshToken';
-import { AuthContext } from "../../services/contextProviders";
+import {loginAction} from "../../pages/Login/Login.store";
 
 const clientId =
     '615431139760-t49kr24ovuiihvbk689dovbklr1gn8qe.apps.googleusercontent.com';
 
-function Login() {
+const Login = function () {
     const history = useHistory();
-    const authContext = useContext(AuthContext);
+    const dispatch = useDispatch();
 
     const onSuccess = (res) => {
         console.log('Login Success: currentUser:', res.profileObj);
-        alert(
-            `Logged in successfully... welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
-        );
         localStorage.setItem("authToken", JSON.stringify(res.profileObj));
+        dispatch(loginAction(res.profileObj));
         history.push('/');
         refreshTokenSetup(res);
     };

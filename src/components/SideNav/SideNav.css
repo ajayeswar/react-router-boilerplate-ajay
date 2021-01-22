@@ -40,7 +40,12 @@ aside img{
     transform: translateY(-50%);
     color: red;
 }
-
+.pull-right{
+    margin-left: auto;
+}
+.pull-right > * {
+    display: inline-block
+}
 
 @media screen and (max-width: 600px){
     aside{

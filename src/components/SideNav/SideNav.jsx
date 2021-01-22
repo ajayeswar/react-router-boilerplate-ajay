@@ -1,14 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import HomeImg from '../../resources/images/people-1.png';
+import { ThemeContext } from '../../services/contextProviders';
+import Logout from '../SignIn/Logout';
+import ToggleSwitch from '../ToggleSwitch/toggleSwitch';
 
 import './SideNav.css';
-import HomeImg from '../../resources/images/people-1.png';
-import Logout from '../SignIn/Logout';
-import { AuthContext } from "../../services/contextProviders";
 
 export default function SideNav({ routes }) {
     const [toggleHamburger, setHamburger] = useState(false);
-    const authContext = useContext(AuthContext);
+    const loginDetails = useSelector(state => state.Login.loginDetails);
+    const themeSelected = useContext(ThemeContext);
 
     function toggleMobileMenu() {
         setHamburger(!toggleHamburger);
@@ -32,6 +36,10 @@ export default function SideNav({ routes }) {
         );
     }
 
+    function renderThemeSelector() {
+        return <ToggleSwitch onChange={themeSelected.setThemeMode} />
+    }
+
     function mobileHamburgerButton() {
         return <div className="hamburger-icon">
             {homeIcon()}
@@ -40,7 +48,7 @@ export default function SideNav({ routes }) {
     }
 
     function logOutBtn() {
-        return authContext.isLoggedIn && <Logout />;
+        return loginDetails && loginDetails.name && <Logout />;
     }
 
     function homeIcon() {
@@ -52,7 +60,10 @@ export default function SideNav({ routes }) {
             {mobileHamburgerButton()}
             {window.innerWidth > 600 && homeIcon()}
             {displayRouteMenu(routes, toggleMobileMenu)}
-            {logOutBtn()}
+            <div className="pull-right">
+                {renderThemeSelector()}
+                {logOutBtn()}
+            </div>
         </aside>
     );
 }

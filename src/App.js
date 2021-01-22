@@ -1,25 +1,31 @@
-import "./App.css";
+import { Provider } from 'react-redux';
 import { useState } from 'react';
-import ROUTES, { RenderRoutes } from './services/routes';
+
 import SideNav from './components/SideNav/SideNav';
-import { AuthContext } from './services/contextProviders';
+import { ThemeContext } from './services/contextProviders';
+import ROUTES, { RenderRoutes } from './services/routes';
+import store from './services/store/store';
+
+import "./App.css";
 
 function App() {
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    const login = () => {
-        setLoggedIn(true);
+    const [theme, setThemeMode] = useState('light');
+
+    function toggleThemeMode() {
+        theme === 'light' ? setThemeMode('dark') : setThemeMode('light');
     }
-    const logout = () => {
-        setLoggedIn(false);
-    }
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
-            <div className="App">
-                <SideNav routes={ROUTES}></SideNav>
-                <div className="main"><RenderRoutes routes={ROUTES} /></div>
-            </div>
-        </AuthContext.Provider>
+        <Provider store={store}>
+            <ThemeContext.Provider value={{ theme, setThemeMode: toggleThemeMode }}>
+                <div className={`App ${theme}`}>
+                    <SideNav routes={ROUTES}></SideNav>
+                    <div className="main"><RenderRoutes routes={ROUTES} /></div>
+                </div>
+            </ThemeContext.Provider>
+        </Provider>
     );
 }
 
 export default App;
+

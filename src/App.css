@@ -1,6 +1,31 @@
 .App {
   text-align: center;
+  background-color: var(--themed-primary-bg);
+  color: var(--themed-primary-text);
+  --themed-primary-bg: #fff;
+  --themed-primary-text: #000;
 }
-.main{
+.main {
     padding-top: 46px;
+    height: calc( 100vh - 46px );
+    overflow: scroll;
+}
+.App.dark {
+    --themed-primary-bg: #000;
+    --themed-primary-text: #fff;
+}
+
+.App.light {
+    --themed-primary-bg: #fff;
+    --themed-primary-text: #000;
+ }
+
+ .flex {
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+ }
+ .flex img {
+    object-fit: contain;
+    margin: 0.5rem;
 }

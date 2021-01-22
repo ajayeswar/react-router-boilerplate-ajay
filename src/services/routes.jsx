@@ -1,13 +1,18 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Route, Switch} from "react-router-dom";
+
+import Gallery from "../pages/Gallery/Gallery";
+import Home from "../pages/Home/Home";
 import LoginPage from "../pages/Login/Login";
+import { loginAction } from '../pages/Login/Login.store';
 
 const ROUTES = [
     {
-        path: "/", key: "HOME_OF_ALL", exact: true, component: (props) => <ProtectedRoute component={() => <h1>HOME OF ALL</h1>} />
+        path: "/", key: "HOME_OF_ALL", exact: true, component: (props) => <ProtectedRoute component={() => <Home />} />
     },
     {
-        path: "/gallery", key: "APP_GALLERY", name: "GALLERY", exact: true, component: () => <ProtectedRoute component={() => <h1> GALLERY</h1>} />
+        path: "/gallery", key: "APP_GALLERY", name: "GALLERY", exact: true, component: () => <ProtectedRoute component={() => <Gallery/>} />
     },
     {
         path: "/wod", key: "APP_WOD", name: "WOD", exact: true, component: () => <ProtectedRoute component={() => <h1> WOD</h1>} />
@@ -31,9 +36,15 @@ function RouteWithSubRoutes(route) {
 }
 
 export function ProtectedRoute(props) {
+    const  dispatch = useDispatch();
+    const loginDetails = useSelector(state => state.Login.loginDetails);
+
     if (!localStorage.getItem("authToken")) {
-        alert("You need to log in to access app routes");
         return <Redirect to={"/login"} />;
+    }
+    
+    if(!loginDetails){
+        dispatch(loginAction(JSON.parse(localStorage.getItem("authToken"))))
     }
     return props.component();
 }
