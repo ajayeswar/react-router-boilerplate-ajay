@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { connect } from "react-redux";
 
 import {getImagesAction} from './Gallery.store';
-import { API } from '../../services/api/api';
 import Image from '../../components/Image/Image';
+import connect from '../../services/redux-connect/connect';
 
+@connect(mapStateToProps, mapDispatchToProps)
 class Gallery extends Component {
     constructor(props){
         super(props);
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => ({
     getImagesAction: () => dispatch(getImagesAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+export default Gallery;

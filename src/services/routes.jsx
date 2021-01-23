@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Suspense, lazy} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch} from "react-router-dom";
 
-import Gallery from "../pages/Gallery/Gallery";
-import Home from "../pages/Home/Home";
-import LoginPage from "../pages/Login/Login";
 import { loginAction } from '../pages/Login/Login.store';
+
+//react lazy loading 
+const Home = lazy(() => import('../pages/Home/Home.tsx'));
+const Gallery = lazy(() => import('../pages/Gallery/Gallery'));
+const LoginPage = lazy(() => import('../pages/Login/Login'));
 
 const ROUTES = [
     {
@@ -51,12 +53,14 @@ export function ProtectedRoute(props) {
 
 export function RenderRoutes({ routes }) {
     return (
-        <Switch>
-            {routes.map((route, i) => {
-                return <RouteWithSubRoutes key={route.key} {...route} />;
-            })}
-            <Route component={() => <h1>Not Found!</h1>} />
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+                {routes.map((route, i) => {
+                    return <RouteWithSubRoutes key={route.key} {...route} />;
+                })}
+                <Route component={() => <h1>Not Found!</h1>} />
+            </Switch>
+        </Suspense>
     );
 }
 

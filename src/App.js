@@ -4,7 +4,7 @@ import { useState } from 'react';
 import SideNav from './components/SideNav/SideNav';
 import { ThemeContext } from './services/contextProviders';
 import ROUTES, { RenderRoutes } from './services/routes';
-import store from './services/store/store';
+import store from './services/store/store.ts';
 
 import "./App.css";
 
