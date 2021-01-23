@@ -1,6 +1,6 @@
 import { connect as $connect, Options } from 'react-redux';
 
-import { RootState } from '../store/store';
+import { RootState } from './store';
 
 export default function connect(
     mapStateToProps?: (state: RootState, ownProps?: any) => any,

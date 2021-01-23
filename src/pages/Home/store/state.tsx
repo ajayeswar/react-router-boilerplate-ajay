@@ -1,6 +1,6 @@
-interface initialHomeStateInterface {
-    configDetails: {[key: string]: any}
+export interface InitialHomeStateInterface {
+    configDetails: { [key: string]: any }
 };
-export const initialHomeState: initialHomeStateInterface = {
+export const initialHomeState: InitialHomeStateInterface = {
     configDetails: {}
 }

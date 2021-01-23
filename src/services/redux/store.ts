@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 
-import Gallery from '../../pages/Gallery/Gallery.store.js';
+import { reducer as Gallery } from '../../pages/Gallery/store/store';
 import { reducer as Home } from '../../pages/Home/store/store';
 import Login from '../../pages/Login/Login.store.js';
 
@@ -10,7 +10,7 @@ const reducer = combineReducers({
 })
 
 const store = configureStore({
-  reducer
+    reducer
 })
 
 export default store;
