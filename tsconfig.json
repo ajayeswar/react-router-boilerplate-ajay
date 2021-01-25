@@ -1,36 +1,52 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "skipLibCheck": true,
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "lib": ["dom",
-        "dom.iterable",
-        "esnext","es6", "es7", "esnext.asynciterable"],
-    "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["src/*"]
+    "compilerOptions": {
+        "target": "es5",
+        "skipLibCheck": true,
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext",
+            "es6",
+            "es7",
+            "esnext.asynciterable"
+        ],
+        "sourceMap": true,
+        "allowJs": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "components/*": [
+                "src/components/*"
+            ],
+            "services/*": [
+                "src/services/*"
+            ],
+            "pages/*": [
+                "src/pages/*"
+            ],
+            "src/*": [
+                "src/*"
+            ]
+        },
+        "importHelpers": true
     },
-    "importHelpers": true
-  },
-  "include": [
-    "./src/**/*"
-  ]
+    "include": [
+        "./src/**/*"
+    ]
 }

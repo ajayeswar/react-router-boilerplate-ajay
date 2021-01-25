@@ -35,7 +35,7 @@ function Home(): React.ReactNode {
             <>
                 <h1> HOME --- {themeDetails.theme}</h1>
                 <h3>HI {loginDetails && loginDetails.name.toUpperCase()}</h3>
-                <Button backgroundColor={'red'} primary={true} size={'medium'} label={configDetails?.branding_key || ''}></Button>
+                <Button backgroundColor={'red'} primary={true} size={'medium'} label={configDetails?.icon_url || ''}></Button>
             </>
         )}
     </ThemeContext.Consumer>
